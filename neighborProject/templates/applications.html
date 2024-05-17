@@ -1,0 +1,115 @@
+{% extends 'layout.html' %}
+  
+{% block title %}Application{% endblock %}
+
+{% block content %}
+<h1>neighborhoods</h1>
+<div>
+    <h3>Neighborhoods:</h3>
+
+    <table>
+            <tr>
+                <td>Neighborhood Name:</td>
+                <td>Description:</td>
+                <td>Select:</td>
+            </tr>
+            
+        {% for neighborhood in neighborhoods %}
+            <tr>
+                <td>{{ neighborhood.name}}</td> 
+                <td>{{ neighborhood.description }}</td>
+                <td>
+                    <form action="{{ url_for('applications') }}" method="post">
+                    <input type="hidden" name="form_id" value="form1">
+                        <input type="hidden" name="neighborhood_id" value="{{ neighborhood.neighborhood_id }}">
+                        <input type="submit" value="See Blocks">
+                    </form>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td>No neighborhoods found.</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <br>
+    {% if see_blocks %}
+    <h3>See Blocks: </h3>
+        <table>
+            <tr>
+                <td>Block Name:</td>
+                <td>Description:</td>
+                <td>Select:</td>
+            </tr>
+            
+        {% for block in blocks %}
+            <tr>
+                <td>{{ block.name}}</td> 
+                <td>{{ block.description }}</td>
+                <td>
+                    <form action="{{ url_for('applications') }}" method="post">
+                    <input type="hidden" name="form_id" value="form2">
+                        <input type="hidden" name="block_id" value="{{ block.block_id }}">
+                        <input type="submit" value="apply">
+                    </form>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td>No blocks found.</td>
+            </tr>
+        {% endfor %}
+        </table>
+    {% endif %}
+
+    <br>
+    <h3>My Application: </h3>
+    <table>
+        <tr>
+            <td>Application ID:</td>
+            <td>Username:</td>
+            <td>Block Name:</td>
+            <td>Status:</td>
+            <td>Created Date:</td>
+            <td>Updated Date:</td>
+            <td>Select:</td>
+        </tr>
+        
+    {% for app in your_app %}
+        <tr>
+            <td>{{ app.application_id}}</td>
+            <td>{{ app.username }}</td>
+            <td>{{ app.block_name }}</td> 
+            <td>{{ app.status }}</td>
+            <td>{{ app.created_date }}</td>
+            <td>{{ app.updated_date }}</td>
+            <td>
+            </td>
+        </tr>
+    {% else %}
+        <tr>
+            <td colspan="7">No blocks found.</td>
+        </tr>
+    {% endfor %}
+    </table>
+    
+   
+
+
+
+
+    {% with messages = get_flashed_messages()  %}
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      {{ message }}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+</div>
+{% endblock %}

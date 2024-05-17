@@ -1,0 +1,64 @@
+{% extends 'layout.html' %}
+  
+{% block title %}Users{% endblock %}
+
+{% block content %}
+<h1>Meet Users Page</h1>
+<div>
+    <h3>Not Your Friends!:</h3>
+    <p>(Includes: N/A & rejected)(Not Include: Friends & Pending)</p>
+    <table>
+        {% for user in users %}
+            <tr>
+                <form method="POST" action="{{ url_for('meet')}}">
+                    <input type="hidden" name="form_id" value="form1">
+                    <input type="hidden" name="user_id" value="{{ user.user_id }}">
+                    <td>{{ user.username }}</td> 
+                    <td>{{ user.user_id }}</td>
+                    <td><input type="submit" value="Request friend"></td>
+                </form>
+                
+            </tr>
+        {% else %}
+            <tr>
+                <td>No users found.</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <hr>
+    <h3>Not Your Neighbor!:</h3>
+    <p>(Includes: N/A & rejected)(Not Include: Friends & Pending)</p>
+    <table>
+        {% for neighbor in neighbors %}
+            <tr>
+                <form method="POST" action="{{ url_for('meet')}}">
+                    <input type="hidden" name="form_id" value="form2">
+                    <input type="hidden" name="neighbor_id" value="{{ neighbor.user_id }}">
+                    <td>{{ neighbor.username }}</td> 
+                    <td>{{ neighbor.user_id }}</td>
+                    <td><input type="submit" value="Add neighbor"></td>
+                </form>
+                
+            </tr>
+        {% else %}
+            <tr>
+                <td>No neighbors found.</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    {% with messages = get_flashed_messages()  %}
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      {{ message }}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+</div>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+  
+{% block title %}Requests{% endblock %}
+
+{% block content %}
+<h1>Requests Page</h1>
+<div>
+    <p>Your friend requests are below: (includes request recieved and sent)</p>
+    <table>
+        {% for user in users %}
+            <tr>
+                <form method="POST" action="{{ url_for('requests')}}">
+                    <input type="hidden" name="user_id1" value="{{ user.user_id1}}">
+                    <td>{{ user.username }}</td>
+                    <td>{{user.user_id}}</td>
+                    <td><button type="submit" name="action" value="Accept">Accept</button></td>
+                    <td><button type="submit" name="action" value="Reject">Reject</button></td>
+                </form>
+            </tr>
+        {% else %}
+            <tr>
+                <td>No users found.</td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

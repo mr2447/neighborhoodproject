@@ -1,0 +1,122 @@
+/* General Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    background-color: #f8f9fa;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+
+
+/* Sticky Header */
+nav.site-header {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav.site-header a {
+    color: white;
+    padding: 10px;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 200px;
+    position: fixed;
+    top: auto;
+    left: 0;
+    height: 100vh;
+    background-color: #343a40;
+    padding: 20px 10px;
+}
+
+.sidebar-sticky {
+    position: sticky;
+    top: 0;
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.sidebar ul li a {
+    display: block;
+    padding: 10px;
+    color: white;
+    border-left: 3px solid transparent;
+}
+
+.sidebar ul li a.active,
+.sidebar ul li a:hover {
+    background-color: #007bff;
+    border-left: 3px solid #0056b3;
+}
+
+/* Main content */
+main {
+    margin-left: 200px; /* Same as sidebar width */
+    padding: 20px;
+    min-height: 100vh;
+}
+
+/* Dashboard heading and content */
+h1.h2 {
+    color: #343a40;
+}
+
+p {
+    margin-top: 10px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+
+    .sidebar ul li a {
+        padding: 15px;
+    }
+
+    main {
+        margin-left: 0;
+    }
+
+    nav.site-header {
+        flex-direction: column;
+    }
+
+    nav.site-header a {
+        padding: 10px 0;
+    }
+}
+
+/* Tabke Format */
+table {
+    border-collapse: collapse; /* Ensures that borders do not double up */
+}
+
+td {
+    padding: 10px; /* Adds space inside each cell */
+    border: 1px solid #ccc; /* Optional: Adds a border around each cell for clarity */
+}

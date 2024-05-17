@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+  
+{% block title %}Friendships{% endblock %}
+
+{% block content %}
+<h1>Friends Page</h1>
+<div>
+    <p>Your Friends details are below:</p>
+    <table>
+        {% for friend in friends %}
+            <tr>
+                <td>{{ friend.username}}-------</td>     
+                <td>{{ friend.status}}</td> 
+                <td><form method="POST" action="{{ url_for('friendships')}}">
+                    <input type="hidden" name="form_id" value="form1">
+                    <input type="hidden" name="username" value="{{ friend.username }}">
+                    <td><input type="submit" value="reject friend"></td>
+                </form></td>
+            </tr>
+        {% else %}
+            <tr>
+                <td>No friends found.</td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

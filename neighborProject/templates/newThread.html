@@ -1,0 +1,85 @@
+{% extends 'layout.html' %}
+  
+{% block title %}Compose{% endblock %}
+
+{% block content %}
+
+<h1>Compose Page</h1>
+<body style="background-color:#ccc;">
+
+    <div class="container">
+      <div class="row main">
+       <div class="main-login main-center">
+       <h5>Compose a new thread</h5>
+
+        <form action="{{ url_for('newThread') }}" method="post" autocomplete="off"> 
+          <input type="hidden" name="form_id" value="form1">
+        
+          <div class="form-group">
+            <label for="recipientType">Select Recipient Type</label>
+            <div class="cols-sm-10">
+              <input list="actions" id="recipientType" name="recipientType" class="form-control" placeholder="Recipient Types...">
+              <datalist id="actions">
+                  <option value="Friend">
+                  <option value="Neighbor">
+                  <option value="Block">
+              </datalist>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email" class="cols-sm-2 control-label">Recipient Email</label>
+            <div class="cols-sm-10">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                <input type="text" class="form-control" name="email" id="email"  placeholder="Enter Recipient Email"/>
+              </div>
+            </div>
+          </div>
+         
+          <div class="form-group">
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+              {% for message in messages %}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                  {{ message }}
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+              {% endfor %}
+            {% endif %}
+            {% endwith %}
+            <input type="submit" value="Create" class="form-control btn btn-primary" name="">
+          </div>
+        </form>
+
+        {% if thread_created %}
+
+        <div class="form-group mt-4">
+          <h5>Write a message</h5>
+          <form action="{{ url_for('newThread') }}" method="post" autocomplete="off">
+
+            <div class="form-group">
+              <label for="title" class="cols-sm-2 control-label">Message Title</label>
+              <div class="cols-sm-10">
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                  <input type="text" class="form-control" name="title" id="title"  placeholder="Enter Message Title"/>
+                </div>
+              </div>
+            </div>
+
+            
+            <input type="hidden" name="form_id" value="form2">
+            <textarea class="form-control" name="message" id="message" rows="4" placeholder="Write your message here..."></textarea>
+            <input type="submit" value="Send" class="form-control btn btn-success mt-2">
+          </form>
+        </div>
+        {% endif %}
+
+       </div>
+      </div>
+     </div>
+</body>
+{% endblock %}

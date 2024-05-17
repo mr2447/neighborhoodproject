@@ -1,0 +1,29 @@
+{% extends 'layout.html' %}
+  
+{% block title %}Messages{% endblock %}
+
+{% block content %}
+<h1>Threads Page</h1>
+<div>
+    <p>Your Thread details are below:</p>
+    <table>
+            <tr>
+
+                <td>Author: </td>
+                <td>Thread Title: </td>
+                <td>Date: </td>
+            </tr>
+        {% for message in messages %}
+            <tr>
+                <td>{{message.username}}</td>
+                <td><a class="nav-link" href="{{ url_for('thread', thread_id = message.thread_id)}}">{{ message.title }}</a></td> 
+                <td>{{message.timestamp}}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td>No Threads found.</td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

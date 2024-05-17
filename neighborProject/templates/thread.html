@@ -1,0 +1,101 @@
+{% extends 'layout.html' %}
+  
+{% block title %}Messages{% endblock %}
+
+{% block content %}
+<h1>Message Thread Page</h1>
+<div>
+    <p>Your message details are below:</p>
+    <table>
+        <tr>
+            <td>From: </td>
+            <td>Title: </td>
+            <td>Date: </td>
+            <td>Status:</td>
+            <td>Reply</td>
+
+            
+        </tr>
+        {% for message in messages %}
+            <tr>
+                <td>{{message.username}}</td>
+                <td>{{message.title}}</td>
+                <td>{{message.timestamp}}</td>
+                <td>{{message.status}}</td>
+
+                <td>
+                    <form action="{{ url_for('thread', thread_id=thread_id) }}" method="post">
+                    <input type="hidden" name="form_id" value="form1">
+                        <input type="hidden" name="author_id" value="{{ message.author_id }}">
+                        <input type="submit" value="Reply">
+                    </form>
+                </td>
+
+                <td>
+                    <form action="{{ url_for('thread', thread_id=thread_id) }}" method="post">
+                        <input type="hidden" name="form_id" value="form3">
+                        <input type="hidden" name="message_id" value="{{ message.message_id }}">
+                        <input type="submit" value="Read text">
+                    </form>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td>No thread messages found.</td>
+            </tr>
+        {% endfor %}
+    </table>
+   
+    {% if text_display and to_read %}
+        <div class="form-group mt-4">
+            <p>{{ to_read.body }}</p>
+        </div>
+    {% endif %}
+
+    {% if message_reply %}
+    <div class="form-group mt-4">
+        <h5>Write a message</h5>
+        <form action="{{ url_for('thread', thread_id=thread_id) }}" method="post" autocomplete="off">
+        <input type="hidden" name="form_id" value="form2">
+            
+            <div class="form-group">
+                <label for="title" class="cols-sm-2 control-label">Message Title</label>
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                        <input type="text" class="form-control" name="title" id="title"  placeholder="Enter Message Title"/>
+                    </div>
+                </div>
+            </div>
+            
+            
+            <textarea class="form-control" name="message" id="message" rows="4" placeholder="Write your message here..."></textarea>
+            <input type="submit" value="Send" class="form-control btn btn-success mt-2">
+        </form>
+    </div>
+    {% endif %}
+
+    
+
+
+    <div class="form-group">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          {% for message in messages %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+              {{ message }}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+      </div>
+
+</div>
+{% endblock %}
+
+
+

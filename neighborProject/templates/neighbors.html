@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+  
+{% block title %}Neighbors{% endblock %}
+
+{% block content %}
+<h1>Neighbors Page</h1>
+<div>
+    <p>Your Neighbors details are below:</p>
+    <table>
+        {% for neighbor in neighbors %}
+            <tr>
+                <td>{{ neighbor.username}}-------</td>     
+                <td><form method="POST" action="{{ url_for('neighbors')}}">
+                    <input type="hidden" name="form_id" value="form">
+                    <input type="hidden" name="username" value="{{ neighbor.username }}">
+                    <td><input type="submit" value="remove neighbor"></td>
+                </form></td>
+            </tr>
+        {% else %}
+            <tr>
+                <td>No neighbors found.</td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

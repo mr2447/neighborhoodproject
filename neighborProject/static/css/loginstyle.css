@@ -1,0 +1,87 @@
+/* Basic styling */
+body {
+    background-color: #ccc;
+    font-family: Arial, sans-serif; /* Sets a clean, readable font */
+    display: flex;
+    justify-content: center; /* Centers the login box horizontally */
+    align-items: center; /* Centers the login box vertically */
+    min-height: 100vh; /* Full viewport height */
+    margin: 0; /* Removes default margin */
+}
+
+.login-box {
+    background: white;
+    width: 100%;
+    max-width: 400px; /* Maximum width of the login box */
+    padding: 20px;
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Subtle shadow */
+}
+
+.login-header {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px; /* Space below the header */
+}
+
+.login-body {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #333; /* Dark grey color for text */
+}
+
+.form-group {
+    margin-bottom: 15px; /* Space between form inputs */
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px; /* Space between each form-control */
+}
+
+.btn-success {
+    background-color: #28a745; /* Bootstrap green */
+    color: white;
+    border: none;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+}
+
+.alert {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 10px;
+    border-radius: 4px;
+    margin-top: 20px;
+}
+
+.alert-dismissible .close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0.75rem 1.25rem;
+    color: inherit;
+}
+
+a {
+    color: #007bff; /* Bootstrap blue for links */
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Styling for checkbox and its label */
+input[type="checkbox"] {
+    margin-right: 5px; /* Space between checkbox and label */
+}
+
+b {
+    font-weight: normal; /* No bold for label consistency, adjust as needed */
+}

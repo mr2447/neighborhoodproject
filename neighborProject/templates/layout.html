@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8">
+  <title>{% block title %}{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/layoutstyle.css') }}">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"> -->
+ <!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> -->
+ <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script> -->
+ <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+
+<!-- jQuery and Bootstrap JavaScript -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+ </head>
+ <body class="loggedin">
+ <nav class="site-header sticky-top py-1">
+      <div class="container d-flex flex-column flex-md-row align-items-start">
+  <a class="py-2 d-none d-md-inline-block ml-1" href="{{ url_for('home') }}"><i class="fas fa-home"></i> Home</a>
+  <a class="py-2 d-none d-md-inline-block ml-1" href="{{ url_for('profile')}}"><i class="fas fa-user-circle"></i> Profile</a>
+  <a class="py-2 d-none d-md-inline-block ml-1" href="{{ url_for('logout')}}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+   </div>
+    </nav>
+   
+ <div class="container-fluid">
+      <div class="row">
+        <nav class="col-md-2 d-none d-md-block  sidebar">
+          <div class="sidebar-sticky">
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('meet')}}">
+                  <i class="fas fa-home"></i>
+                  Meet New People
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('messages')}}">
+                  <i class="fas fa-shopping-cart"></i>
+                  My Threads
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('newThread')}}">
+                  <i class="fas fa-users"></i>
+                  Create New Threads
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('friendships')}}">
+                <i class="fas fa-shopping-cart"></i>
+                  My Friends 
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('requests')}}">
+                  <i class="fas fa-users"></i>
+                  Friend Requests
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('neighbors')}}">
+                  <i class="fas fa-download"></i>
+                  My Neighbors
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('applications')}}">
+                  <i class="fas fa-download"></i>
+                  My Application
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('vote')}}">
+                  <i class="fas fa-download"></i>
+                  Vote
+                </a>
+              </li>
+            </ul>
+   </div>
+        </nav>
+  
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+            <div class="col-12">
+   {% block content %}{% endblock %}
+   </div>
+          </div>
+   </main>
+     
+      </div>
+    </div>
+   
+ </body>
+</html>
